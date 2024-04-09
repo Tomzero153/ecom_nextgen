@@ -2,6 +2,8 @@
 import cart from "../Assets/shop-cart.png";
 import user from "../Assets/user_p.png";
 import logoNextgen from "../Assets/Logonextgen.jpg";
+import iconlogout from "../Assets/logout.png";
+import adminlogo from "../Assets/admin.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppContext } from "@/context";

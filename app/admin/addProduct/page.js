@@ -16,9 +16,9 @@ export default function AddProduct() {
   const [img3, setImg3] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
-  // const submitContent = (event) => {
-  //   setDescription(event);
-  // };
+  const submitContent = (event) => {
+    setDescription(event);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
