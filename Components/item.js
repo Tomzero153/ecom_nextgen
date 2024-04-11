@@ -6,7 +6,7 @@ import { useAppContext } from "@/context";
 
 
 export default function Item(props) {
-  const {addToCart}  = useAppContext();
+  const {addToCart,currency}  = useAppContext();
   const newprice = props.price - (props.price * (props.discount / 100));
   
 
@@ -39,11 +39,11 @@ export default function Item(props) {
             <div className="pl-2 lg:text-xl text-sm ">
               {props.discount ? (
                 <>
-                  <p className=" line-through">${props.price}   </p>
-                  <p className=" text-purple-500">${newprice}</p>
+                  <p className=" line-through">{currency.type}{(props.price *currency.value).toLocaleString() }   </p>
+                  <p className=" text-purple-500">{currency.type}{(newprice*currency.value).toLocaleString() }</p>
                 </>
               ) : (
-                <p className=" text-purple-500">${props.price}</p>
+                <p className=" text-purple-500">{currency.type}{(props.price *currency.value.toLocaleString())}</p>
               )}
             
             </div>

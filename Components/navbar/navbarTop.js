@@ -13,7 +13,7 @@ import  { useState, useEffect } from "react";
 
 export default function Navbar() {
 
-  const { getTotalcartItems,checkUser,setCheckUser,adminrole,setAdminrole } = useAppContext();
+  const { getTotalcartItems,checkUser,setCheckUser,adminrole,setAdminrole,currency,setCurrency } = useAppContext();
 
   const adminmode = true;
 
@@ -23,6 +23,20 @@ export default function Navbar() {
     setAdminrole(false);
     logout();
   }
+
+  const selectCurrency = (selectedValue) => {
+
+      if (selectedValue === "THB") {
+        console.log("type",typeof(currency.value));
+        setCurrency({ type: "฿", value: 35 });
+        
+      } else if (selectedValue === "USD") {
+        setCurrency({ type: "$", value: 1 });
+        
+      } 
+      // setProduct(sortedProduct); // อัปเดตสถานะของสินค้าเป็นอ็อบเจ็กต์ที่ถูกเรียงลำดับแล้ว
+    
+  };
 
   useEffect(()=>{
     console.log("navbar");
@@ -46,7 +60,7 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* <div className="hidden md:inline  md:flex w-[25%]   ">
+          <div className="hidden md:inline  md:flex w-[25%]   ">
             <input
               type="search"
               className="relative m-0 block w-[1px] flex-auto rounded-full border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-1.5 text-xl font-normal text-surface transition duration-300 ease-in-out focus:border-primary focus:text-white focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-purple-600 dark:bg-body-dark text-purple-600 dark:placeholder:text-purple-800 dark:autofill:shadow-autofill"
@@ -71,11 +85,32 @@ export default function Navbar() {
                 />
               </svg>
             </span>
-          </div> */}
+          </div>
 
-          {/* <div className="flex-col pt-2 md:w-[25%] w-[50%]  justify-end "> */}
-          <div className="flex-col pt-2  w-[50%]  justify-end ">
-            <div className="flex gap-3 justify-end relative">
+          <div className="flex-col pt-2 md:w-[25%] w-[50%]  justify-end ">
+          {/* <div className="flex-col pt-2  w-[50%]  justify-end "> */}
+
+            <div className="flex gap-4 justify-end relative">
+            <div className="flex justify-end   ">
+        <form className="flex w-25">
+       
+          <select
+            onChange={(e) => selectCurrency(e.target.value)}
+            id="countries"
+            className="w-25  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option  value="THB">
+            ฿ THB
+            </option>
+            <option selected value="USD">$ USD</option>
+           
+            {/* <option value="DE">Germany</option> */}
+          </select>
+        </form>
+           </div>
+
+              
+              
               {adminrole && (
                 <Link href="/admin/addProduct">
                   <Image className="md:h-full md:w-10  h-8 w-8" src={adminlogo} alt="" />
@@ -113,7 +148,7 @@ export default function Navbar() {
 
         </div>
 
-        {/* <div className="flex w-full]  md:hidden ">
+        <div className="flex w-full]  md:hidden ">
             <input
               type="search"
               className="relative m-0 block w-[1px] flex-auto rounded-full border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-1.5 text-xl font-normal text-surface transition duration-300 ease-in-out focus:border-primary focus:text-white focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-purple-600 dark:bg-body-dark text-purple-600 dark:placeholder:text-purple-800 dark:autofill:shadow-autofill"
@@ -138,7 +173,7 @@ export default function Navbar() {
                 />
               </svg>
             </span>
-          </div> */}
+          </div>
       </div>
     </div>
   );

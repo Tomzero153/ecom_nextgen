@@ -11,7 +11,7 @@ export default function ShopCart() {
     cartItems,
     removeFromCart,
     ChangqtyToCart,
-    getTotalCartAmount,
+    getTotalCartAmount,currency
   } = useAppContext();
   const [qtyItems, setQtyItems] = useState(5);
 
@@ -77,7 +77,7 @@ export default function ShopCart() {
                     </td>
                     <td className="md:px-6 px-1  py-4  md:text-sm text-xs font-semibold text-gray-900 dark:text-white">
                       <p> {e.title.toUpperCase()}</p>
-                      <p className="pt-5">Price: ${new_price(e)}</p>
+                      <p className="pt-5">Price: {currency.type}{(new_price(e)*currency.value).toLocaleString()}</p>
                     </td>
 
                     <td className="md:px-6 px-1  md:text-sm text-xs py-4">
@@ -98,7 +98,7 @@ export default function ShopCart() {
                       </div>
                     </td>
                     <td className="md:px-6 px-1  md:text-sm text-xs py-4 font-semibold text-gray-900 dark:text-white">
-                      ${new_price(e) *cartItems[e.id]}
+                    {currency.type}{((new_price(e) *cartItems[e.id])*currency.value).toLocaleString()}
                     </td>
                     <td className="md:px-6 px-1  md:text-sm text-xs py-4">
                       <a
@@ -124,7 +124,7 @@ export default function ShopCart() {
           <p className=" md:text-2xl text-xl  mr-5">Total cart</p>
         </div>
         <div className="h-14 flex border-b justify-end items-center bg-gray-800 border-gray-700 ">
-          <p className=" md:text-xl text-sm  mr-5">${getTotalCartAmount()}</p>
+          <p className=" md:text-xl text-sm  mr-5">{currency.type}{(getTotalCartAmount()*currency.value).toLocaleString()}</p>
         </div>
         <div className=" h-16 flex justify-end items-center border-b bg-gray-800 border-gray-700  ">
           <button onClick={()=>buysuccess()} className="md:p-2 p-1 md:text-2xl text-xl    mr-5 bg-purple-600 rounded-md">

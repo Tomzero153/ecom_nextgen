@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 
 export default function Cart({ params }) {
-  const {all_product,addToCart, ChangqtyToCart}  = useAppContext();
+  const {all_product,addToCart, ChangqtyToCart,currency}  = useAppContext();
   const [product, setProduct] = useState([]);
   const [numberqty, setNumberqty] = useState(1);
 
@@ -55,10 +55,10 @@ export default function Cart({ params }) {
             {product.discount ? (
               <>
                 <p className=" text-purple-500">
-                  ${product.price - product.price * (product.discount / 100)}
+                {currency.type}{((product.price - product.price * (product.discount / 100))*currency.value).toLocaleString()}
                 </p>
                 <div className="flex">
-                  <p className="line-through">$ {product.price}</p>
+                  <p className="line-through">{currency.type} {(product.price*currency.value).toLocaleString()}</p>
                   <p className="no-underline ml-2"> {product.discount}% </p>
                 </div>
               </>
