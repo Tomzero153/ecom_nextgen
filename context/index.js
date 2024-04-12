@@ -27,6 +27,7 @@ export function ContextWrapper({ children }) {
 
   const [adminrole, setAdminrole] = useState(false);
   const [currency, setCurrency] = useState({ type: "$", value: 1 });
+  const [searching,setSearching] = useState("");
 
 
 
@@ -106,7 +107,8 @@ export function ContextWrapper({ children }) {
     }
   };
 
-  const contextValue = {state,all_product,cartItems,addToCart,getTotalcartItems,getTotalCartAmount,removeFromCart,ChangqtyToCart,setCartItems,checkUser,setCheckUser,adminrole,setAdminrole,setCurrency,currency};
+  const contextValue = {state,all_product,cartItems,addToCart,getTotalcartItems,getTotalCartAmount,removeFromCart,ChangqtyToCart,setCartItems,checkUser,setCheckUser,adminrole,setAdminrole,setCurrency,currency
+  ,searching,setSearching};
   return(
   <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
   )
