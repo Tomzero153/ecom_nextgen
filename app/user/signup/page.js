@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/context/user";
 
 export default function Signup() {
   const [username, setUserName] = useState("");
@@ -15,6 +16,8 @@ export default function Signup() {
   const [error_password, setError_password] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
+
+  const { user,setUser } = useUserContext();
 
   console.log(username, password, confirmPassword);
   const handleSubmit = async (e) => {
@@ -64,6 +67,8 @@ export default function Signup() {
         const form = e.target;
         Swal.fire("OK", "User registration successfully!", "success");
         form.reset();
+        setUser(username);
+        console.log("user",user);
         router.push("/user/address");
       } else {
         Swal.fire("Oops...", "User registration failed.", "error");

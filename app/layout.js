@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavbarTop from "../Components/navbar/navbarTop";
 import { createContext } from "react";
 import { ContextWrapper } from "@/context";
+import { UserContextWrapper } from "@/context/user";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -15,14 +16,15 @@ import { ContextWrapper } from "@/context";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      
       <body>
         {/* <AppWrapper> */}
-         
-          <ContextWrapper>
-          <NavbarTop />
-          {children}
-          </ContextWrapper> 
+
+        <ContextWrapper>
+          <UserContextWrapper>
+            <NavbarTop />
+            {children}
+          </UserContextWrapper>
+        </ContextWrapper>
         {/* </AppWrapper> */}
       </body>
     </html>
