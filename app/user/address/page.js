@@ -5,37 +5,36 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Swal from "sweetalert2";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/user";
 
 export default function Signup() {
-  const { user,setUser } = useUserContext();
-  
+  const { user, setUser } = useUserContext();
+
   const [input_name, setInput_name] = useState("");
-  const [input_address, setInput_address,] = useState("");
+  const [input_address, setInput_address] = useState("");
   const [input_city, setInput_city] = useState("");
   const [input_state, setInput_state] = useState("");
-  const [input_postal, setInput_Postal] = useState("");
-  const [input_country, setInput_Country] = useState();
+  const [input_postal, setInput_Postal] = useState();
+  const [input_country, setInput_Country] = useState("");
   const [input_phone, setInput_Phone] = useState();
   const [error_name, setError_name] = useState("");
-  const [error_address, setError_address,] = useState("");
+  const [error_address, setError_address] = useState("");
   const [error_city, setError_city] = useState("");
   const [error_state, setError_state] = useState("");
   const [error_postal, setError_Postal] = useState("");
   const [error_country, setError_Country] = useState();
   const [error_phone, setError_Phone] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
-  const router = useRouter()
+  const router = useRouter();
 
   const onChange_input_name = (e) => {
     const Value = e.target.value;
     setInput_name(Value);
-    console.log("user",user);
+    console.log("user", user);
 
     if (Value.length >= 1) {
       setError_name("");
-
     } else {
       setError_name("name worng formate");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง
@@ -48,7 +47,6 @@ export default function Signup() {
 
     if (Value.length >= 1) {
       setError_address("");
-
     } else {
       setError_address("name worng formate");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง
@@ -61,50 +59,42 @@ export default function Signup() {
 
     if (Value.length >= 1) {
       setError_state("");
-
     } else {
       setError_state("name worng formate");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง
     }
   };
 
-  
   const onChange_input_city = (e) => {
     const Value = e.target.value;
-   setInput_city(Value);
+    setInput_city(Value);
 
     if (Value.length >= 1) {
       setError_city("");
-
     } else {
       setError_city("name worng formate");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง
     }
   };
 
-  
   const onChange_input_postal = (e) => {
     const Value = e.target.value;
-   setInput_Postal(Value);
+    setInput_Postal(Value);
 
     if (Value.length >= 1) {
       setError_Postal("");
-
     } else {
       setError_Postal("name worng formate");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง
     }
   };
 
-
-  
   const onChange_input_phone = (e) => {
     const Value = e.target.value;
-   setInput_Phone(Value);
+    setInput_Phone(Value);
 
     if (Value.length >= 1) {
       setError_Phone("");
-
     } else {
       setError_Phone("phone worng formate");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง
@@ -113,84 +103,62 @@ export default function Signup() {
 
   const onChange_input_country = (e) => {
     const Value = e.target.value;
-   setInput_Country(Value);
+    setInput_Country(Value);
 
     if (Value.length >= 1) {
-      setInput_Country("");
-
+      setError_Country("");
     } else {
       setError_Country("phone worng formate");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง
     }
   };
 
-
-
-  
-
-
-
-
-
-  
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !user ||
+      !input_name ||
+      !input_address ||
+      !input_city ||
+      !input_state ||
+      !input_postal ||
+      !input_country ||
+      !input_phone
+    ) {
+      Swal.fire("Oops...", "Please complete all inputs.", "error");
+      return;
+    }
 
-    //check password
-    // if (password != confirmPassword) {
-    //   Swal.fire("Oops...", "Password do not match!", "error");
-    //   return;
-    // }
+    try {
+      const res = await fetch("/api/address/addAddress", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user,
+          input_name,
+          input_address,
+          input_city,
+          input_postal,
+          input_state,
+          input_country,
+          input_phone,
+        }),
+      });
 
-    // if (!username || !password || !confirmPassword) {
-    //   Swal.fire("Oops...", "Please complete all inputs.", "error");
-    //   return;
-    // }
-
-    // //user check
-    // const resCheckUser = await fetch("/api/user/usercheck", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ username }),
-    // });
-
-    // const { user } = await resCheckUser.json();
-    // console.log(user);
-    // if (user) {
-    //   Swal.fire("Oops...", "User already exists.", "error");
-    //   return;
-    // }
-
-    // //register
-    // try {
-    //   const res = await fetch("/api/user/register", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       username,
-    //       password,
-    //     }),
-    //   });
-
-    //   if (res.ok) {
-    //     const form = e.target;
-    //     Swal.fire("OK", "User registration successfully!", "success");
-    //     form.reset();
-    //     router.push('/user/login');
-    //   } else {
-    //     Swal.fire("Oops...", "User registration failed.", "error");
-    //     console.log("User registration failed.");
-    //   }
-    // } catch (error) {
-    //   Swal.fire("Oops...", "Error during registration:", "error");
-    // }
+      if (res.ok) {
+        // const form = e.target;
+        router.push("/user/login");
+        // Swal.fire("OK", "Add Product successfully!", "success");
+        // form.reset();
+      } else {
+        Swal.fire("Oops...", "Add Product failed.", "error");
+        console.log("Add Product failed.");
+      }
+    } catch (error) {
+      Swal.fire("Oops...", "Error during Add Product", "error");
+    }
   };
 
   return (
@@ -205,7 +173,7 @@ export default function Signup() {
                   className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-                 NAME
+                  NAME
                 </label>
               </div>
               <div className="md:w-2/3 relative">
@@ -217,7 +185,7 @@ export default function Signup() {
                   value={input_name}
                   onChange={onChange_input_name}
                 />
-                 {error_name && (
+                {error_name && (
                   <p className="text-red-500 absolute top-10 left-0">
                     {error_name}
                   </p>
@@ -230,7 +198,7 @@ export default function Signup() {
                   className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-                 ADDRESS
+                  ADDRESS
                 </label>
               </div>
               <div className="md:w-2/3 relative">
@@ -242,7 +210,7 @@ export default function Signup() {
                   value={input_address}
                   onChange={onChange_input_address}
                 />
-                 {error_address && (
+                {error_address && (
                   <p className="text-red-500 absolute top-10 left-0">
                     {error_address}
                   </p>
@@ -250,15 +218,13 @@ export default function Signup() {
               </div>
             </div>
 
-       
-
             <div className="md:flex md:items-center mb-8">
               <div className="md:w-1/3">
                 <label
                   className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-                 CITY
+                  CITY
                 </label>
               </div>
               <div className="md:w-2/3 relative">
@@ -270,7 +236,7 @@ export default function Signup() {
                   value={input_city}
                   onChange={onChange_input_city}
                 />
-                 {error_city && (
+                {error_city && (
                   <p className="text-red-500 absolute top-10 left-0">
                     {error_city}
                   </p>
@@ -284,7 +250,7 @@ export default function Signup() {
                   className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-                STATE/PROVINCE
+                  STATE/PROVINCE
                 </label>
               </div>
               <div className="md:w-2/3 relative">
@@ -296,7 +262,7 @@ export default function Signup() {
                   value={input_state}
                   onChange={onChange_input_state}
                 />
-                 {error_state && (
+                {error_state && (
                   <p className="text-red-500 absolute top-10 left-0">
                     {error_state}
                   </p>
@@ -310,19 +276,19 @@ export default function Signup() {
                   className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-               ZIP/POSTAL CODE
+                  ZIP/POSTAL CODE
                 </label>
               </div>
               <div className="md:w-2/3 relative">
                 <input
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   id="inline-full-name"
-                  type="text"
+                  type="number"
                   placeholder="POSTAL CODE"
                   value={input_postal}
                   onChange={onChange_input_postal}
                 />
-                 {error_postal && (
+                {error_postal && (
                   <p className="text-red-500 absolute top-10 left-0">
                     {error_postal}
                   </p>
@@ -336,7 +302,7 @@ export default function Signup() {
                   className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-               COUNTRY
+                  COUNTRY
                 </label>
               </div>
               <div className="md:w-2/3 relative">
@@ -348,7 +314,7 @@ export default function Signup() {
                   value={input_country}
                   onChange={onChange_input_country}
                 />
-                 {error_postal && (
+                {error_postal && (
                   <p className="text-red-500 absolute top-10 left-0">
                     {error_postal}
                   </p>
@@ -362,19 +328,20 @@ export default function Signup() {
                   className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-              PHONE NUMBER
+                  PHONE NUMBER
                 </label>
               </div>
               <div className="md:w-2/3 relative">
                 <input
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   id="inline-full-name"
-                  type="text"
+                  type="tel"
                   placeholder="Phone"
                   value={input_phone}
+                 
                   onChange={onChange_input_phone}
                 />
-                 {error_phone && (
+                {error_phone && (
                   <p className="text-red-500 absolute top-10 left-0">
                     {error_phone}
                   </p>

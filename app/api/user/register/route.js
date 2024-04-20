@@ -8,9 +8,10 @@ import User from '../../../../models/user';
 export async function POST(req) {
   try {
     console.log("Name:");
-    const { username, password } = await req.json();
+    const {email, username, password } = await req.json();
     const bcrypt = require("bcrypt");
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("email:",email);
     console.log("Name:",username);
     console.log("Pass:",password);
      console.log("hashedPassword:",hashedPassword);
@@ -20,6 +21,7 @@ export async function POST(req) {
        cart[i] = 0;
      }
      const user = new User({
+      email:email,
       username: username,
       password: hashedPassword,
       cartData: cart,

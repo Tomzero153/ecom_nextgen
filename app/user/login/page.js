@@ -12,13 +12,14 @@ import { useAppContext } from "@/context";
 
 
 import { authenticate,checkadmin,getUser  } from "../../../services/authoriza";
-
+import { useUserContext } from "@/context/user";
 export default function Login() {
 
-  const { setCheckUser, setAdminrole } = useAppContext();
+  // const { setCheckUser, setAdminrole } = useAppContext();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter()
+  const { user,setUser,setCheckUser, setAdminrole } = useUserContext();
 
   async function checklogin() {
     try {
@@ -55,6 +56,7 @@ export default function Login() {
     try {
 
       setCheckUser(getUser);
+      setUser(username);
       const role = checkadmin()
       if (role == true) {
         setAdminrole(true)

@@ -1,6 +1,6 @@
 "use client";
 import cart from "../Assets/shop-cart.png";
-import user from "../Assets/user_p.png";
+import logouser from "../Assets/user_p.png";
 import logoNextgen from "../Assets/Logonextgen.jpg";
 import iconlogout from "../Assets/logout.png";
 import adminlogo from "../Assets/admin.png";
@@ -11,11 +11,16 @@ import Search from "../Search";
 
 import { logout} from "../../services/authoriza";
 import  { useState, useEffect } from "react";
+import { useUserContext } from "@/context/user";
+
+
+
 
 export default function Navbar() {
 
-  const { getTotalcartItems,checkUser,setCheckUser,adminrole,setAdminrole,currency,setCurrency,setSearching } = useAppContext();
+  const { getTotalcartItems,currency,setCurrency,setSearching } = useAppContext();
 
+  const { user, setUser,user_detail,setUser_detail,checkUser,setCheckUser,adminrole,setAdminrole } = useUserContext();
   const adminmode = true;
 
   function clicklogout()
@@ -107,11 +112,15 @@ export default function Navbar() {
 
               {!checkUser && (
                 <Link href="/user/login">
-                  <Image className="md:h-full md:w-10  h-8 w-8" src={user} alt="" />
+                  <Image className="md:h-full md:w-10  h-8 w-8" src={logouser} alt="" />
                 </Link>
               )}
 
               {checkUser && (
+                <>
+                    <Link href="/user/account/information">
+                  <Image className="md:h-full md:w-10  h-8 w-8" src={logouser} alt="" />
+                </Link>
                 <Link href="/">
                   <Image className="md:h-full md:w-10  h-8 w-8" src={iconlogout} alt="" 
                   
@@ -119,6 +128,7 @@ export default function Navbar() {
                   
                   />
                 </Link>
+                </>
               )}
             </div>
 

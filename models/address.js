@@ -2,29 +2,56 @@ import mongoose, { Schema } from "mongoose";
 
 const addressSchema = new Schema(
     {
+        id: {
+            type: Number,
+            required: true,
+          },
+      
         username: {
             type: String,
             required: true
         },
-        email: {
+        name: {
             type: String,
             required: true
         },
-        password: {
+        address: {
             type: String,
-            required: true
+            required: false
         },
-        role: {
+        city: {
             type: String,
             required: false,
-            default: "user"
+            
         },
-        cartData: {
-            type: Object,
-          },
+        state: {
+            type: String,
+            required: false,
+            
+        }
+        ,
+        postal: {
+            type: Number,
+            required: false,
+            
+        }
+        ,
+        country: {
+            type: String,
+            required: false,
+            
+        }
+        ,
+        phone: {
+            type: String,
+            required: false,
+            
+        }
+        ,
+       
     },
     { timestamps: true }
 )
 
-const User = mongoose.models.User || mongoose.model("Address", addressSchema);
-export default User;
+const Address = mongoose.models.Address || mongoose.model("Address", addressSchema);
+export default Address;
