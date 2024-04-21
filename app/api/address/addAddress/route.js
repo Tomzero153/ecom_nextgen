@@ -28,7 +28,7 @@ export async function POST(req) {
     } else {
       id = 1;
     }
-
+    
     console.log("user",user);
     console.log("name",input_name);
     console.log("address",input_address);

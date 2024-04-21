@@ -15,27 +15,37 @@ export function UserContextWrapper({ children }) {
      const [adminrole, setAdminrole] = useState(false);
 
      const [effect, setEffect] = useState(false);
+     const [all_address,setAll_address] = useState([]);
+     const [address_detail,setAddress_detail] = useState([]);
 
 
 
 
     useEffect(() => {
       fetchData()
+      fetch_address()
     }, [effect,checkUser]);
 
 
+    useEffect(() => {
+      console.log( "fetch address");
+  
+    }, [effect,checkUser]);
+
+    
     const fetchData = async () => {
       console.log("userfetch,",checkUser);
       if(checkUser != "" && checkUser != false )
       {
         console.log("user >>>>>",checkUser);
       try {
+        const username = checkUser;
         const res = await fetch("/api/user/getuser", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ checkUser })
+          body: JSON.stringify({ username })
         });
         if (!res.ok) {
           throw new Error("ไม่สามารถดึงข้อมูลได้");
@@ -47,9 +57,37 @@ export function UserContextWrapper({ children }) {
       }
     }
     };
+
+
+    const fetch_address = async () => {
+      console.log("userfetch,",checkUser);
+      if(checkUser != "" && checkUser != false )
+      {
+        console.log("address >>>>>",checkUser);
+      try {
+        const username = checkUser;
+        const res = await fetch("/api/address/getAddress", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username })
+        });
+        if (!res.ok) {
+          throw new Error("ไม่สามารถดึงข้อมูลได้");
+        }
+        const data = await res.json();
+        console.log("address",data);
+        setAddress_detail(data);
+      } catch (error) {
+        console.error("เกิดข้อผิดพลาด: ", error.message);
+      }
+    }
+    };
+
   
 
-    const contextValue = {user,setUser,user_detail,setUser_detail ,checkUser,setCheckUser,adminrole,setAdminrole,effect,setEffect};
+    const contextValue = {user,setUser,user_detail,setUser_detail ,checkUser,setCheckUser,adminrole,setAdminrole,effect,setEffect,address_detail,setAddress_detail};
     return(
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
     )

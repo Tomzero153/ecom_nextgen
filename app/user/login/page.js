@@ -15,7 +15,7 @@ import { authenticate,checkadmin,getUser  } from "../../../services/authoriza";
 import { useUserContext } from "@/context/user";
 export default function Login() {
 
-  // const { setCheckUser, setAdminrole } = useAppContext();
+  const { setCartItems } = useAppContext();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter()
@@ -43,7 +43,9 @@ export default function Login() {
         console.log("username",data.username);
         authenticate(data, () => { 
         });
+         add_Data_cart();
          rolecheck();
+         
 
         return;
       }
@@ -57,6 +59,8 @@ export default function Login() {
 
       setCheckUser(getUser);
       setUser(username);
+
+
       const role = checkadmin()
       if (role == true) {
         setAdminrole(true)
@@ -74,6 +78,27 @@ export default function Login() {
     }
   }
 
+
+  async function add_Data_cart() {
+    console.log("username",username);
+    try {
+      const res = await fetch("/api/user/getuser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username })
+      });
+      if (!res.ok) {
+        throw new Error("ไม่สามารถดึงข้อมูลได้");
+      }
+      const data = await res.json();
+      console.log("cart add",data.cartData)
+      setCartItems(data.cartData);
+    } catch (error) {
+      console.error("เกิดข้อผิดพลาด: ", error.message);
+    }
+  }
 
 
 

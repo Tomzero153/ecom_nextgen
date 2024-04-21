@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { connectMongoDB } from "../../../../lib/mongodb";
-import User from '../../../../models/user';
+import Address from '../../../../models/address';
 // import bcrypt from 'bcryptjs'
 
 export async function POST(req) {
@@ -11,10 +11,10 @@ export async function POST(req) {
       await connectMongoDB();
       const { username } = await req.json();
 
-       const userdata = await User.findOne( { username: username });
+       const address_data = await Address.findOne( { username: username });
 
-       if (userdata) {
-        return NextResponse.json( userdata )
+       if (address_data) {
+        return NextResponse.json( address_data )
        }
        else{
         return NextResponse.json({ message: "User not found!" }, { status: 500 });

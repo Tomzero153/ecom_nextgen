@@ -314,9 +314,9 @@ export default function Signup() {
                   value={input_country}
                   onChange={onChange_input_country}
                 />
-                {error_postal && (
+                {error_country && (
                   <p className="text-red-500 absolute top-10 left-0">
-                    {error_postal}
+                    {error_country}
                   </p>
                 )}
               </div>

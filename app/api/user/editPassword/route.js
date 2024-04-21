@@ -14,10 +14,10 @@ export async function POST(req) {
     if (!existingUser) {
       return NextResponse.json({ message: "User not found." }, { status: 404 });
     }
-
+    const newhashedPassword = await bcrypt.hash(newpassword, 10);
     const passwordMatch = await bcrypt.compare(password, existingUser.password);
     if (passwordMatch) {
-      existingUser.password = newpassword;
+      existingUser.password = newhashedPassword;
       await existingUser.save();
       return NextResponse.json(true)
    } else {

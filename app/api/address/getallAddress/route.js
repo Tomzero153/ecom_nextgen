@@ -7,8 +7,6 @@ import Address from '../../../../models/address';
 
 export async function GET() {
   try {
-
-
     await connectMongoDB();
     let allAddress = await Address.find({});
     return NextResponse.json(allAddress);

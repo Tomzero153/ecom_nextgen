@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useAppContext } from "@/context";
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 export default function ShopCart() {
   const {
@@ -14,6 +15,7 @@ export default function ShopCart() {
     getTotalCartAmount,currency
   } = useAppContext();
   const [qtyItems, setQtyItems] = useState(5);
+
 
   const new_price = (item) => {
     const price = item.price - item.price * (item.discount / 100);
@@ -39,6 +41,7 @@ export default function ShopCart() {
 
   return (
     <div className=" block xl:w-[1300px] w-full  xl:m-auto  items-center pt-8">
+      <p className=" text-3xl pb-5 font-bold">CART</p>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="md:text-sm  text-xs  text-white uppercase bg-purple-600 ">
@@ -120,17 +123,23 @@ export default function ShopCart() {
       
           </tbody>
         </table>
-        <div className="h-10 mt-12 flex justify-end items-center bg-purple-600 ">
+        <div className=" ">
+        <div className="h-10 mt-12 flex justify-end items-center bg-purple-600 rounded">
           <p className=" md:text-2xl text-xl  mr-5">Total cart</p>
         </div>
         <div className="h-14 flex border-b justify-end items-center bg-gray-800 border-gray-700 ">
           <p className=" md:text-xl text-sm  mr-5">{currency.type}{(getTotalCartAmount()*currency.value).toLocaleString()}</p>
         </div>
         <div className=" h-16 flex justify-end items-center border-b bg-gray-800 border-gray-700  ">
-          <button onClick={()=>buysuccess()} className="md:p-2 p-1 md:text-2xl text-xl    mr-5 bg-purple-600 rounded-md">
+         
+         <Link  href="/main/shopcart/chackout"> <button className="md:p-2 p-1 md:text-2xl text-xl    mr-5 bg-purple-600 rounded-md">
             Buy Now
           </button>
+          </Link>
         </div>
+          
+        </div>
+   
       </div>
     </div>
   );

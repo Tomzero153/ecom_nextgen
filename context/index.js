@@ -23,30 +23,43 @@ export function ContextWrapper({ children }) {
   const [all_product,setAll_product] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
-  const [checkUser, setCheckUser] = useState(getUser());
-
-  const [adminrole, setAdminrole] = useState(false);
   const [currency, setCurrency] = useState({ type: "$", value: 1 });
   const [searching,setSearching] = useState("");
+  const [isPageRefreshed, setIsPageRefreshed] = useState(true); 
+
 
 
 
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    // localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
   };
+  
 
 
   const ChangqtyToCart = (vale,itemId) => {
     if(vale >0)
     {
     setCartItems((prev) => ({ ...prev, [itemId]: Number(vale) }));
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    // localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
 
   };
+
+  const read_cart =()=>
+  {
+    if(localStorage.getItem("cartItems"))
+    {
+
+      const x = JSON.parse(localStorage.getItem("cartItems"))
+      setCartItems(x);
+    }
+ 
+
+
+  }
 
   const getTotalcartItems = ()=>{
     let totalItem = 0;
@@ -69,7 +82,10 @@ export function ContextWrapper({ children }) {
   };
   const getTotalCartAmount = () => 
   {
+    
     let totalAmount = 0;
+    if(all_product.length > 0)
+    {
     for(const item in cartItems)
     {
       if(cartItems[item]>0)
@@ -80,15 +96,66 @@ export function ContextWrapper({ children }) {
         totalAmount += newprice*cartItems[item];
       }  
     }
+  }
+  
 
     return totalAmount;
   }
 
+  useEffect(() => {
+
+    if (!isPageRefreshed) { // ตรวจสอบว่าไม่มีการรีเฟรชหน้า
+      console.log( "resetx");
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      fetch_update_cart();
+    } else {
+      setIsPageRefreshed(false); // ตั้งค่าให้เป็น false เมื่อมีการเรียกใช้งานเมื่อมีการรีเฟรชหน้า
+    }
+   
+  }, [cartItems, isPageRefreshed]);
+
+
+
+
+  useEffect(() => {
+    setIsPageRefreshed(true); // ตั้งค่าให้เป็น true เมื่อมีการรีเฟรชหน้า
+  }, []);
+
+  const fetch_update_cart = async () => {
+    if(getUser())
+    {
+      const username = getUser();
+      console.log("username",username)
+      console.log("to cart",cartItems)
+    try {
+      const res = await fetch("/api/user/updatecart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username , cartItems })
+      });
+      if (!res.ok) {
+        throw new Error("ไม่สามารถดึงข้อมูลได้");
+      }
+      const data = await res.json();
+      console.log("data",data);
+     if(data== true)
+     {
+      return;
+    }
+    } catch (error) {
+      console.error("เกิดข้อผิดพลาด: ", error.message);
+    }
+  }
+  };
 
   useEffect(() => {
     console.log( "reset2");
     fetchData();
+    read_cart();
   }, []);
+    
   const fetchData = async () => {
     try {
       const res = await fetch("/api/product/getallproduct", {
@@ -107,7 +174,17 @@ export function ContextWrapper({ children }) {
     }
   };
 
-  const contextValue = {state,all_product,cartItems,addToCart,getTotalcartItems,getTotalCartAmount,removeFromCart,ChangqtyToCart,setCartItems,checkUser,setCheckUser,adminrole,setAdminrole,setCurrency,currency
+
+
+
+
+
+
+
+
+  
+
+  const contextValue = {state,all_product,cartItems,addToCart,getTotalcartItems,getTotalCartAmount,removeFromCart,ChangqtyToCart,setCartItems,setCurrency,currency
   ,searching,setSearching};
   return(
   <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
