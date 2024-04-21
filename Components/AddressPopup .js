@@ -174,12 +174,12 @@ export default function AddressPopup({ onClose }) {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center">
-      <div className="sm:w-[600px] w-full m-auto items-center  bg-purple-950  rounded-md  border-2 border-gray-600">
+      <div className=" sm:w-[600px] w-[300px]  sm:m-auto items-center  bg-purple-950  rounded-md  border-2 border-gray-600">
         <form
           onSubmit={handleSubmit}
           className="text-sm pl-2 ml-12  pt-8  w-full max-w-sm "
         >
-          <div className="md:flex md:items-center  mb-8">
+          <div className="md:flex md:items-center  sm:mb-8 mb-1">
             <div className="md:w-1/3">
               <label
                 className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -188,7 +188,7 @@ export default function AddressPopup({ onClose }) {
                 NAME
               </label>
             </div>
-            <div className="md:w-2/3 relative">
+            <div className="md:w-2/3 w-[70%] relative">
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="inline-full-name"
@@ -204,7 +204,7 @@ export default function AddressPopup({ onClose }) {
               )}
             </div>
           </div>
-          <div className="md:flex md:items-center mb-8">
+          <div className="md:flex md:items-center sm:mb-8 mb-1">
             <div className="md:w-1/3">
               <label
                 className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -213,7 +213,7 @@ export default function AddressPopup({ onClose }) {
                 ADDRESS
               </label>
             </div>
-            <div className="md:w-2/3 relative">
+            <div className="md:w-2/3 w-[70%] relative">
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="inline-full-name"
@@ -230,7 +230,7 @@ export default function AddressPopup({ onClose }) {
             </div>
           </div>
 
-          <div className="md:flex md:items-center mb-8">
+          <div className="md:flex md:items-center sm:mb-8 mb-1">
             <div className="md:w-1/3">
               <label
                 className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -239,7 +239,7 @@ export default function AddressPopup({ onClose }) {
                 CITY
               </label>
             </div>
-            <div className="md:w-2/3 relative">
+            <div className="md:w-2/3 w-[70%] relative">
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="inline-full-name"
@@ -256,7 +256,7 @@ export default function AddressPopup({ onClose }) {
             </div>
           </div>
 
-          <div className="md:flex md:items-center mb-8">
+          <div className="md:flex md:items-center sm:mb-8 mb-1">
             <div className="md:w-1/3">
               <label
                 className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -265,7 +265,7 @@ export default function AddressPopup({ onClose }) {
                 STATE/PROVINCE
               </label>
             </div>
-            <div className="md:w-2/3 relative">
+            <div className="md:w-2/3 w-[70%] relative">
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="inline-full-name"
@@ -282,7 +282,7 @@ export default function AddressPopup({ onClose }) {
             </div>
           </div>
 
-          <div className="md:flex md:items-center mb-8">
+          <div className="md:flex md:items-center sm:mb-8 mb-1">
             <div className="md:w-1/3">
               <label
                 className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -291,7 +291,7 @@ export default function AddressPopup({ onClose }) {
                 ZIP/POSTAL CODE
               </label>
             </div>
-            <div className="md:w-2/3 relative">
+            <div className="md:w-2/3 w-[70%] relative">
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="inline-full-name"
@@ -308,7 +308,7 @@ export default function AddressPopup({ onClose }) {
             </div>
           </div>
 
-          <div className="md:flex md:items-center mb-8">
+          <div className="md:flex md:items-center sm:mb-8 mb-1">
             <div className="md:w-1/3">
               <label
                 className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -317,7 +317,7 @@ export default function AddressPopup({ onClose }) {
                 COUNTRY
               </label>
             </div>
-            <div className="md:w-2/3 relative">
+            <div className="md:w-2/3 w-[70%] relative">
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="inline-full-name"
@@ -334,7 +334,7 @@ export default function AddressPopup({ onClose }) {
             </div>
           </div>
 
-          <div className="md:flex md:items-center mb-8">
+          <div className="md:flex md:items-center sm:mb-8 mb-3">
             <div className="md:w-1/3">
               <label
                 className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -343,7 +343,7 @@ export default function AddressPopup({ onClose }) {
                 PHONE NUMBER
               </label>
             </div>
-            <div className="md:w-2/3 relative">
+             <div className="md:w-2/3 w-[70%] relative">
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 id="inline-full-name"
@@ -363,7 +363,7 @@ export default function AddressPopup({ onClose }) {
           <div className="pb-5 md:flex md:items-center">
             <div className="md:w-1/3"></div>
 
-            <div className="md:w-2/3 relative">
+            <div className="md:w-2/3 w-[70%] relative">
               <button
                 className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="submit"

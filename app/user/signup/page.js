@@ -19,7 +19,7 @@ export default function Signup() {
 
   const { user,setUser } = useUserContext();
 
-  console.log(username, password, confirmPassword);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,7 +69,7 @@ export default function Signup() {
         Swal.fire("OK", "User registration successfully!", "success");
         form.reset();
         setUser(username);
-        console.log("user",user);
+        
         router.push("/user/address");
       } else {
         Swal.fire("Oops...", "User registration failed.", "error");
@@ -90,7 +90,7 @@ export default function Signup() {
 
     if (validateEmail(emailValue)) {
       setError_email("");
-      console.log("email", "true");
+
     } else {
       setError_email("Email worng formate");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง
@@ -104,7 +104,7 @@ export default function Signup() {
 
     if (passwordValue == password  &&  passwordValue.length > 1) {
       setError_password("");
-      console.log("email", "true");
+      
     } else {
       setError_password("Password not match");
       // ใส่โค้ดสำหรับแสดงข้อความหรือการแจ้งเตือนถ้าอีเมลไม่ถูกต้อง

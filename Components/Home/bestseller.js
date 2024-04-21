@@ -40,7 +40,7 @@ export default function Bestseller() {
         <div class="flex-grow h-px bg-purple-700 ml-2"></div>
       </div>
 
-      <div className="ml-3 grid xl:grid-cols-4  lg:gap-4   md:grid-cols-3 grid-cols-2 gap-2  pt-4 ">
+      <div className="ml-3  grid xl:grid-cols-4  lg:gap-4   md:grid-cols-3 grid-cols-2 gap-2 pt-4 ">
         
         {bestseller.length >0  &&   bestseller.slice(0, 8).map((item, index) => {
           return (

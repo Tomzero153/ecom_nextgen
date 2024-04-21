@@ -11,11 +11,11 @@ export default function Item(props) {
   
 
   return (
-    <div className="flex  flex-wrap lg:w-[300px]  md:w-[250px]  sm:w-[230px]  w-[200px] bg-slate-800 rounded">
+    <div className="flex  flex-wrap lg:w-[300px]  md:w-[250px]  sm:w-[230px]  w-[180px] bg-slate-800 border-2 border-gray-600 rounded-lg">
        <Link href={`/main/cart/${props.slug}`}  className="w-full" >
     
       <Image
-        className=" bg-white lg:h-[300px] md:h-[250px] sm:h-[230px] h-[200px] w-full   transition-transform transform hover:scale-105"
+        className=" bg-white lg:h-[300px] md:h-[250px] sm:h-[230px] h-[180px] w-full   transition-transform transform hover:scale-105"
         src={props.image}
         width={500}
         height={500}
@@ -24,7 +24,7 @@ export default function Item(props) {
 
       </Link>
       <div className="flex flex-wrap  w-full  justify-center">
-        <p className="flex pt-1 text-center lg:text-xl text-lg whitespace-normal">
+        <p className="flex pt-1 text-center lg:text-xl md:text-lg text-sm whitespace-normal">
           {props.title.toUpperCase()}
         </p>
         <div className="lg:pt-2 hidden md:inline md:flex w-full justify-between">

@@ -36,7 +36,7 @@ export default function Search() {
             type="search"
             value={searchValue}
             onChange={handleSearchChange}
-            className="relative m-0 block flex-grow rounded-full border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-1.5 text-xl font-normal text-surface transition duration-300 ease-in-out focus:border-primary focus:text-white focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-purple-600 dark:bg-body-dark text-purple-600 dark:placeholder:text-purple-800 dark:autofill:shadow-autofill"
+            className="relative m-0 block flex-grow rounded-full border border-solid  bg-transparent bg-clip-padding px-3 py-1.5 lg:text-xl font-normal text-surface transition duration-300 ease-in-out focus:border-primary focus:text-white focus:shadow-inset focus:outline-none motion-reduce:transition-none border-purple-600 dark:bg-body-dark text-purple-600 placeholder:text-purple-800 autofill:shadow-autofill"
             placeholder="Search"
             aria-label="Search"
             aria-describedby="button-addon2"

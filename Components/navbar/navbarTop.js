@@ -51,7 +51,7 @@ export default function Navbar() {
   // }, []);
   return (
     <div className="py-2 bg-slate-900 md:sticky top-0 z-40  border-b  border-slate-700">
-      <div className=" block xl:w-[1300px] w-full xl:m-auto   items-center md:h-[80px] h-[120px]">
+      <div className=" block xl:w-[1300px] w-full xl:m-auto   items-center lg:h-[80px] h-[120px]">
         <div className="flex w-full h-20 flex-wrap items-center  ">
           <div className="flex  w-[50%]  items-center">
             <Link href="/">
@@ -66,22 +66,22 @@ export default function Navbar() {
             </span>
           </div>
 
-          <div className="hidden md:inline  md:flex w-[25%]   ">
+          <div className="hidden lg:inline  lg:flex w-[25%]   ">
          
          <Search/>
           </div>
 
-          <div className="flex-col pt-2 md:w-[25%] w-[50%]  justify-end ">
+          <div className="flex-col pt-2 lg:w-[25%] w-[50%]  justify-end ">
           {/* <div className="flex-col pt-2  w-[50%]  justify-end "> */}
 
             <div className="flex gap-4 justify-end relative">
             <div className="flex justify-end   ">
-        <form className="flex w-25">
+        <form className="flex  w-16 md:w-20">
        
           <select
             onChange={(e) => selectCurrency(e.target.value)}
             id="countries"
-            className="w-25  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className=" w-16 md:w-20   border  md:text-sm text-xs rounded-lg focus:ring-purple-600 focus:border-purple-600   bg-gray-700 border-purple-600  text-white"
           >
             <option  value="THB">
             ฿ THB
@@ -137,7 +137,7 @@ export default function Navbar() {
 
         </div>
 
-        <div className="flex w-full]  md:hidden ">
+        <div className="flex w-full]  lg:hidden ">
         <Search/>
             {/* <input
               type="search"

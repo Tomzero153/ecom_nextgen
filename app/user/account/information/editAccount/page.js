@@ -15,8 +15,6 @@ export default function Information() {
   const [password, setPassword] = useState("");
   const [error_email, setError_email] = useState("");
   const username = user_detail.username;
-  console.log("asd", user_detail.username);
-
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
@@ -80,17 +78,17 @@ export default function Information() {
         <div className="grid grid-cols-4 gap-4">
           <NavbarAccount />
           <div className="col-span-3 w-full bg-purple-950 pt-4">
-            <p className="text-3xl text-center font-bold">EDIT ACCOUNT</p>
-            <p className="pt-10 pl-5 text-xl text-left">ACCOUNT INFORMATION</p>
+            <p className="md:text-3xl text-xl text-center font-bold">EDIT ACCOUNT</p>
+            <p className="pt-10 pl-5 md:text-xl text-lg text-left">ACCOUNT INFORMATION</p>
             <div className="mt-10 mb-10 w-[90%]   bg-slate-800 h-auto  m-auto rounded-lg">
             
             <form onSubmit={handleSubmit} className="">
            
-              <p className="pt-5 pl-5 text-lg text-left">EDIT ACCOUNT</p>
-              <p className="pt-5 pl-5 text-lg text-left  text-slate-300">
+              <p className="pt-5 pl-5 md:text-xl text-sm text-left">EDIT ACCOUNT</p>
+              <p className="pt-5 pl-5 md:text-xl text-sm text-left  text-slate-300">
                 ENTER NEW EMAIL
               </p>
-              <div className="md:w-[50%] relative mt-2 mb-5 ">
+              <div className="md:w-[50%] w-[70%] relative mt-2 mb-5 ">
                 <input
                   className="bg-gray-200  border-2 border-gray-200 rounded w-full ml-5 py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   id="inline-full-name"
@@ -106,10 +104,10 @@ export default function Information() {
                 )}
               </div>
 
-              <p className="pt-5 pl-5 text-lg text-left  text-slate-300">
+              <p className="pt-5 pl-5 md:text-xl text-sm text-left  text-slate-300">
                 ENTER CURRENT PASSWORD
               </p>
-              <div className="md:w-[50%] relative mt-2 mb-5 ">
+              <div className="md:w-[50%] w-[70%] relative mt-2 mb-5 ">
               
                 <input
                   className="bg-gray-200  border-2 border-gray-200 rounded w-full ml-5 py-2 px-4 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
@@ -121,12 +119,12 @@ export default function Information() {
              
               </div>
 
-              <button className="flex mt-5 ml-5 p-2 text-lg text-left border-white border-2  rounded-lg hover:bg-purple-600 "   type="submit">
+              <button className="flex mt-5 ml-5 p-2 md:text-xl text-sm text-left border-white border-2  rounded-lg hover:bg-purple-600 "   type="submit">
                 EDIT ACCOUNT
               </button>
               </form>
 
-              <Link href="/user/account/information/"><button className="flex mt-5 ml-5 p-2 text-lg text-left border-white border-2  rounded-lg hover:bg-purple-600 " >
+              <Link href="/user/account/information/"><button className="flex mt-5 ml-5 p-2 md:text-xl text-sm text-left border-white border-2  rounded-lg hover:bg-purple-600 " >
                 BACK              </button> </Link>
             </div>
           </div>

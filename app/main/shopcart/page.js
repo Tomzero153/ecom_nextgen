@@ -43,7 +43,7 @@ export default function ShopCart() {
     <div className=" block xl:w-[1300px] w-full  xl:m-auto  items-center pt-8">
       <p className=" text-3xl pb-5 font-bold">CART</p>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-400">
           <thead className="md:text-sm  text-xs  text-white uppercase bg-purple-600 ">
             <tr>
               <th scope="col" className="md:px-16  px-1 py-3">
@@ -68,7 +68,7 @@ export default function ShopCart() {
               if (cartItems[e.id] > 0) {
                 return (
                   // eslint-disable-next-line react/jsx-key
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <tr className=" border-b bg-gray-800 border-gray-700  hover:bg-gray-600">
                     <td className="p-4">
                       <Image
                         src={e.img1}
@@ -78,7 +78,7 @@ export default function ShopCart() {
                         height={500}
                       />
                     </td>
-                    <td className="md:px-6 px-1  py-4  md:text-sm text-xs font-semibold text-gray-900 dark:text-white">
+                    <td className="md:px-6 px-1  py-4  md:text-sm text-xs font-semibold  text-white">
                       <p> {e.title.toUpperCase()}</p>
                       <p className="pt-5">Price: {currency.type}{(new_price(e)*currency.value).toLocaleString()}</p>
                     </td>
@@ -93,14 +93,14 @@ export default function ShopCart() {
                               ChangqtyToCart(valuex.target.value, e.id)
                             }
                             id="first_product"
-                            className="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="w-14 border text-sm rounded-lg  block px-2.5 py-1 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
                             placeholder="1"
                             required
                           />
                         </div>
                       </div>
                     </td>
-                    <td className="md:px-6 px-1  md:text-sm text-xs py-4 font-semibold text-gray-900 dark:text-white">
+                    <td className="md:px-6 px-1  md:text-sm text-xs py-4 font-semibold  text-white">
                     {currency.type}{((new_price(e) *cartItems[e.id])*currency.value).toLocaleString()}
                     </td>
                     <td className="md:px-6 px-1  md:text-sm text-xs py-4">
