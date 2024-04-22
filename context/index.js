@@ -151,7 +151,7 @@ export function ContextWrapper({ children }) {
   };
 
   useEffect(() => {
-    console.log( "reset2");
+    console.log( "all product reset");
     fetchData();
     read_cart();
   }, []);
