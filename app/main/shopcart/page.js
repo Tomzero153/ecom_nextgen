@@ -2,9 +2,12 @@
 "use client";
 import Image from "next/image";
 import { useAppContext } from "@/context";
+import { useUserContext } from "@/context/user";
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 export default function ShopCart() {
   const {
@@ -14,6 +17,9 @@ export default function ShopCart() {
     ChangqtyToCart,
     getTotalCartAmount,currency
   } = useAppContext();
+
+  const { checkUser } = useUserContext();
+  const router = useRouter();
   const [qtyItems, setQtyItems] = useState(5);
 
 
@@ -25,16 +31,17 @@ export default function ShopCart() {
 
   const buysuccess=  () =>
   {
-    if(getTotalCartAmount() > 0)
-    {
 
-    Swal.fire("OK", "Buy Complete", "success");
-    
+    if(checkUser)
+    {
+      router.push("/main/shopcart/chackout");
     }
     else
     {
-      Swal.fire("Error", "Please add product in the cart", "error");
+      Swal.fire("Error", "Please Login", "error");
+      router.push("/user/login");
     }
+ 
 
   }
 
@@ -132,10 +139,10 @@ export default function ShopCart() {
         </div>
         <div className=" h-16 flex justify-end items-center border-b bg-gray-800 border-gray-700  ">
          
-         <Link  href="/main/shopcart/chackout"> <button className="md:p-2 p-1 md:text-2xl text-xl    mr-5 bg-purple-600 rounded-md">
+          <button className="md:p-2 p-1 md:text-2xl text-xl    mr-5 bg-purple-600 rounded-md" onClick={()=>buysuccess()}>
             Buy Now
           </button>
-          </Link>
+          
         </div>
           
         </div>

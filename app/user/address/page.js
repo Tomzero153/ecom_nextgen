@@ -337,7 +337,7 @@ export default function Signup() {
                   id="inline-full-name"
                   type="tel"
                   placeholder="Phone"
-                  value={Phone}
+                  value={input_phone}
                  
                   onChange={onChange_input_phone}
                 />

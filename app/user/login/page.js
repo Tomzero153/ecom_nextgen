@@ -134,7 +134,7 @@ export default function Login() {
                   className="block text-white  font-bold md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-                  Full Name
+                 Username
                 </label>
               </div>
               <div className="md:w-2/3">

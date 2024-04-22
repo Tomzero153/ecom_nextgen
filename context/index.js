@@ -105,13 +105,13 @@ export function ContextWrapper({ children }) {
   useEffect(() => {
 
     if (!isPageRefreshed) { // ตรวจสอบว่าไม่มีการรีเฟรชหน้า
-      console.log( "resetx");
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
       fetch_update_cart();
     } else {
       setIsPageRefreshed(false); // ตั้งค่าให้เป็น false เมื่อมีการเรียกใช้งานเมื่อมีการรีเฟรชหน้า
     }
    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItems, isPageRefreshed]);
 
 

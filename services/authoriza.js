@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+// import Cookies from 'js-cookie';
 
 
 export const authenticate=(response,next)=>{
@@ -8,6 +9,9 @@ export const authenticate=(response,next)=>{
         sessionStorage.setItem("token",JSON.stringify(response.token))
         sessionStorage.setItem("user",JSON.stringify(response.username))
         sessionStorage.setItem("role",JSON.stringify(response.role))
+        // Cookies.set("token", response.token, { expires: 1 }); // Token expires in 1 day
+        // Cookies.set("user", response.username, { expires: 1 });
+        // Cookies.set("role", response.role, { expires: 1 });
     }
     next()
 }
@@ -54,6 +58,9 @@ export const logout=(next)=>{
         sessionStorage.removeItem("token")
         sessionStorage.removeItem("user")
         sessionStorage.removeItem("role")
+        // Cookies.remove("token");
+        // Cookies.remove("user");
+        // Cookies.remove("role");
         // window.location.reload();
     }
     
